@@ -14,8 +14,13 @@ export default function TabSystem({ tabs, activeId, onChange }) {
                 active
                   ? "bg-white text-brand-700 shadow-sm"
                   : "text-white/80 hover:text-white",
-              ]}
-      
+              ].join(" ")}
+            >
+              {t.label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
