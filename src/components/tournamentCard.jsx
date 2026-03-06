@@ -1,4 +1,4 @@
-
+import StatusBadge from "./StatusBadge.jsx";
 
 function SportIcon({ sport }) {
   const s = String(sport || "").trim();
