@@ -1,7 +1,7 @@
 import React from "react";
 import TournamentCard from "../components/TournamentCard.jsx";
 
-// Component sghir l-Icons ghi bach maykounch l-code twil
+
 function Icon({ name }) {
   const cls = "h-5 w-5";
   if (name === "search") return <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeWidth="2" d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM21 21l-4.35-4.35" /></svg>;
@@ -12,7 +12,7 @@ function Icon({ name }) {
 export default function Home({ tournaments, sport, onSportChange, onSelect }) {
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
-      {/* Header */}
+      {}
       <div className="bg-indigo-600 p-6 text-white rounded-b-[28px] shadow-lg">
         <div className="flex justify-between items-center mb-6">
           <div>
@@ -27,7 +27,7 @@ export default function Home({ tournaments, sport, onSportChange, onSelect }) {
         </div>
       </div>
 
-      {/* Filter Bar */}
+      {}
       <div className="flex gap-2 overflow-x-auto p-4 no-scrollbar">
         {["All", "Badminton", "Basketball", "Boxing"].map((s) => (
           <button
@@ -42,7 +42,7 @@ export default function Home({ tournaments, sport, onSportChange, onSelect }) {
         ))}
       </div>
 
-      {/* List */}
+      {}
       <div className="p-4 space-y-4 max-w-md mx-auto">
         {tournaments.map((t) => (
           <TournamentCard key={t.id} tournament={t} onSelect={onSelect} />
