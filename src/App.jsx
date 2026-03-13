@@ -10,33 +10,28 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null); 
 
   
-  const handleToggleInscription = (id) => {
-    setTournaments(prevTournaments =>
-      prevTournaments.map((t) => {
-        if (t.id === id) {
-          const isAlreadyRegistered = t.isRegistered;
-          if(!isAlreadyRegistered){
-            return{
-              ...t,
-              isRegistered:true,
-              participants:[
-                ...t.participants,
-                {id:"me", name:"Jihane",status:"Confirmed",avatar:"https://i.pravatar.cc/150?u=me"}
-              ]
-            };
-          }else{
-            return{
-              ...t,
-              isRegistered:false,
-              participants:t.participants.filter((p)=>p.id !=="me"),
-            };
-          }
+  const handleToggleInscription = (id, userName = "Moi") => {
+  setTournaments(prev =>
+    prev.map(t => {
+      if (t.id === id) {
+        if (!t.isRegistered) {
           
+          const newParticipant = {
+            id: "user-" + Date.now(),
+            name: userName, 
+            status: "Confirmed",
+            avatar: `https://i.pravatar.cc/150?u=${userName}`
+          };
+          return { ...t, isRegistered: true, participants: [...t.participants, newParticipant] };
+        } else {
+          
+          return { ...t, isRegistered: false, participants: t.participants.filter(p => !p.id.startsWith("user-")) };
         }
-        return t;
-      })
-    );
-  };
+      }
+      return t;
+    })
+  );
+};
 
   const selectedTournament = tournaments.find(t => t.id === selectedId);
   
