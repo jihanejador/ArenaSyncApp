@@ -14,8 +14,8 @@ export default function TournamentCard({ tournament, onSelect, onToggleInscripti
   const t = tournament;
 
   const handleRegister = (e) => {
-    e.stopPropagation(); 
     
+    e.stopPropagation(); 
     onToggleInscription(t.id);
   };
 
@@ -39,11 +39,14 @@ export default function TournamentCard({ tournament, onSelect, onToggleInscripti
         {}
         <div className="mt-4 grid grid-cols-2 gap-2 text-[12px] text-slate-600">
           <div className="flex items-center gap-2">
-            <span className="inline-block h-2 w-2 rounded-full bg-slate-300" />
-            <span className="truncate">{t.participantsCount} Participants</span>
+            <span className={`inline-block h-2 w-2 rounded-full ${t.isRegistered ? 'bg-emerald-500' : 'bg-slate-300'}`} />
+            <span className="truncate font-medium">
+              {}
+              {t.participants.length} / {t.maxParticipants} Participants
+            </span>
           </div>
-          <div className="flex items-center justify-end gap-2">
-            <span className="truncate">{t.location}</span>
+          <div className="flex items-center justify-end gap-2 text-slate-400 font-medium">
+             <span className="truncate">{t.location}</span>
           </div>
         </div>
 
@@ -53,8 +56,8 @@ export default function TournamentCard({ tournament, onSelect, onToggleInscripti
           onClick={handleRegister}
           className={`mt-4 w-full rounded-xl py-2.5 text-sm font-bold transition shadow-sm active:scale-95 ${
             t.isRegistered 
-              ? "bg-red-500 text-white hover:bg-red-600 " 
-              : "bg-emerald-500 text-white hovere:bg-emerald-600"
+              ? "bg-red-500 text-white hover:bg-red-600 shadow-red-100" 
+              : "bg-emerald-500 text-white hover:bg-emerald-600 shadow-emerald-100"
           }`}
         >
           {t.isRegistered ? "Se désinscrire" : "S'inscrire"}

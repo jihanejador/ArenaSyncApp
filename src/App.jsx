@@ -11,15 +11,27 @@ export default function App() {
 
   
   const handleToggleInscription = (id) => {
-    setTournaments(prev =>
-      prev.map(t => {
+    setTournaments(prevTournaments =>
+      prevTournaments.map((t) => {
         if (t.id === id) {
-          const isReg = t.isRegistered;
-          return {
-            ...t,
-            isRegistered: !isReg,
-            participantsCount: isReg ? t.participantsCount - 1 : t.participantsCount + 1
-          };
+          const isAlreadyRegistered = t.isRegistered;
+          if(!isAlreadyRegistered){
+            return{
+              ...t,
+              isRegistered:true,
+              participants:[
+                ...t.participants,
+                {id:"me", name:"Jihane",status:"Confirmed",avatar:"https://i.pravatar.cc/150?u=me"}
+              ]
+            };
+          }else{
+            return{
+              ...t,
+              isRegistered:false,
+              participants:t.participants.filter((p)=>p.id !=="me"),
+            };
+          }
+          
         }
         return t;
       })

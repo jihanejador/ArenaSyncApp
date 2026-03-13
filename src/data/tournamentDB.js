@@ -11,6 +11,8 @@ export const tournamentData = [
     participantsCount: "24/32",
     format: "Single Elimination",
     type: "Public",
+    maxParticipants: 32,
+    isRegistered: false,
     participants: [
       {
         id: "u1",
@@ -50,6 +52,8 @@ export const tournamentData = [
     participantsCount: "8/12 Teams",
     format: "Single Elimination",
     type: "Community",
+    maxParticipants: 12,
+    isRegistered: false,
     participants: [],
   },
   {
@@ -64,6 +68,8 @@ export const tournamentData = [
     participantsCount: "10/16",
     format: "Round Robin",
     type: "Pro",
+    maxParticipants: 16,
+    isRegistered: false,
     participants: [
       {
         id: "u5",
