@@ -4,23 +4,52 @@ import Details from "./pages/Details.jsx";
 import { tournamentData } from "./data/tournamentDB.js";
 
 export default function App() {
+  
+  const [tournaments, setTournaments] = useState(tournamentData);
   const [sport, setSport] = useState("All");
-  const [selected, setSelected] = useState(null);
-
- 
-  const filtered = tournamentData.filter(t => sport === "All" || t.sport === sport);
+  const [selectedId, setSelectedId] = useState(null); 
 
   
-  if (selected) {
-    return <Details tournament={selected} onBack={() => setSelected(null)} />;
+  const handleToggleInscription = (id) => {
+    setTournaments(prev =>
+      prev.map(t => {
+        if (t.id === id) {
+          const isReg = t.isRegistered;
+          return {
+            ...t,
+            isRegistered: !isReg,
+            participantsCount: isReg ? t.participantsCount - 1 : t.participantsCount + 1
+          };
+        }
+        return t;
+      })
+    );
+  };
+
+  const selectedTournament = tournaments.find(t => t.id === selectedId);
+  
+  
+  const filtered = tournaments.filter(t => sport === "All" || t.sport === sport);
+
+ 
+  if (selectedId && selectedTournament) {
+    return (
+      <Details
+        tournament={selectedTournament}
+        onBack={() => setSelectedId(null)}
+        onToggleInscription={handleToggleInscription} 
+      />
+    );
   }
 
+  
   return (
-    <Home 
-      tournaments={filtered} 
-      sport={sport} 
-      onSportChange={setSport} 
-      onSelect={setSelected} 
+    <Home
+      tournaments={filtered}
+      sport={sport}
+      onSportChange={setSport}
+      onSelect={(t) => setSelectedId(t.id)}
+      onToggleInscription={handleToggleInscription}
     />
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TabSystem from "../components/TabSystem.jsx";
 import ParticipantRow from "../components/ParticipantRow.jsx";
 
-export default function Details({ tournament, onBack }) {
+export default function Details({ tournament, onBack, onToggleInscription }) {
   const [tab, setTab] = useState("info");
   const tabs = [
     { id: "info", label: "Info" },
